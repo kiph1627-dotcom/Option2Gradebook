@@ -34,6 +34,15 @@ public class GradebookStudent
         }
         this.name = name.trim();
     }
+    public void addGrade(GradeItem grade)
+    {
+        if (grade == null) {
+        throw new IllegalArgumentException("Grade cannot be null.");
+        }
+        grades.add(grade);
+    }
+    
+
     
     
 }
