@@ -8,6 +8,8 @@ public class GradebookStudent
     private ArrayList<GradeItem> grades;
     public GradebookStudent(int id, String name )
     {
-        
+        this.id = id;
+        this.name = name.trim();
+        this.grades = new ArrayList<GradeItem>();
     }
 }
