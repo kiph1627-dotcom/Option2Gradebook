@@ -17,7 +17,37 @@ public class GradebookStudent
         this.name = name.trim();
         this.grades = new ArrayList<GradeItem>();
     }
+
+    public int getID()
+    {
+        return id;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
+         if (name == null || name.trim().isEmpty()) 
+         {
+            throw new IllegalArgumentException("Student name must not be null or empty.");
+        }
+        this.name = name.trim();
+    }
+    public void addGrade(GradeItem grade)
+    {
+        if (grade == null) {
+        throw new IllegalArgumentException("Grade cannot be null.");
+        }
+        grades.add(grade);
+    }
+   public ArrayList<GradeItem> getGrades() 
+    { 
+    return new ArrayList<GradeItem>(grades); 
+    }
+
     
+
     
     
 }
