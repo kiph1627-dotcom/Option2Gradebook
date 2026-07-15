@@ -21,4 +21,19 @@ public class GradebookManager
         students.add(student);
         return true;
     }
+
+    public boolean addGradeToStudent(int id, String title, double score)
+    {
+        for (GradebookStudent s1 : students)
+        {
+            if (s1.getID() == id)
+            {
+                s1.addGrade(new GradeItem(title, score));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
 }
