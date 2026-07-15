@@ -34,6 +34,16 @@ public class GradebookManager
         }
         return false;
     }
+    public GradebookStudent findById(int id)
+    {
+        for (GradebookStudent s2 : students)
+        {
+            if (s2.getID() == id)
+            {
+                return s2;
+            }
+        }
+        return null;
+    }
 
-    
 }
