@@ -46,4 +46,9 @@ public class GradebookManager
         return null;
     }
 
+    public ArrayList<GradebookStudent> viewAllStudents()
+    {
+        return new ArrayList<GradebookStudent>(students);
+    }
+
 }
