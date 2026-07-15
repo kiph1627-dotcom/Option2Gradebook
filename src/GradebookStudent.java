@@ -45,6 +45,16 @@ public class GradebookStudent
     { 
     return new ArrayList<GradeItem>(grades); 
     }
+      @Override
+    public String toString() {
+        String avgText;
+        if (grades.isEmpty()) {
+            avgText = "no grades yet";
+        } else {
+            avgText = String.format("%.2f", averageGrade());
+        }
+        return "ID: " + id + " | Name: " + name + " | Average: " + avgText;
+    }
 
     
 
