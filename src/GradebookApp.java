@@ -65,6 +65,35 @@ public class GradebookApp
                     System.out.println(manager.viewAllStudents());
                     break;
 
+                case 4:
+                    System.out.println("Enter an id");
+                    id = input.nextInt();
+                    GradebookStudent s = manager.findById(id);
+                    if (s != null)
+                    {
+                        System.out.println(s);
+                        for (GradeItem g : s.getGrades())
+                        {
+                            System.out.println(g);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("No student found with that id");
+                    }
+                case 5:
+                    System.out.println("Enter an id");
+                    id = input.nextInt();
+                    GradebookStudent s3 = manager.findById(id);
+                    if (s3 == null)
+                    {
+                        System.out.println("No student found with that id");
+                    }
+                    else
+                    {
+                        System.out.println(s3);
+                    }
+
             }
         }
     }
