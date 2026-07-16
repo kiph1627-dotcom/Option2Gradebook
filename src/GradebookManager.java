@@ -4,7 +4,7 @@ public class GradebookManager
 {
     private ArrayList<GradebookStudent> students;    
 
-    public GradebookManager(ArrayList<GradebookStudent> students)
+    public GradebookManager()
     {
         this.students = new ArrayList<>();
     }
