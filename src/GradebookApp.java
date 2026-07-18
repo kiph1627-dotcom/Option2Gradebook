@@ -9,8 +9,9 @@ public class GradebookApp
     {
         GradebookManager manager = new GradebookManager();
         Scanner input = new Scanner(System.in);
+        boolean running = true;
 
-        while(true)
+        while(running)
         {
             System.out.println("==== Gradebook Manager ====");
             System.out.println("1. Add Student");
@@ -160,7 +161,12 @@ public class GradebookApp
             }
             break; 
 
+            case 8:
+                System.out.println("Goodbye!");
+                running = false;
+
             }
+                
         }
     }
 }
