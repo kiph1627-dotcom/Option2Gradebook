@@ -1,5 +1,7 @@
 package src;
+import java.io.File;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 public class GradebookApp 
 {
     public static void main(String[] args)
@@ -106,6 +108,56 @@ public class GradebookApp
                     {
                         System.out.println(s3);
                     }
+                case 6:
+                    
+        String path = "data/sample_data.txt";
+        int studentsLoaded = 0;
+        int gradesLoaded = 0;
+        try
+        {
+            Scanner fileScanner = new Scanner(new File(path));
+            while (fileScanner.hasNextLine())
+            {
+                String line = fileScanner.nextLine().trim();
+                if (line.isEmpty())
+                {
+                    continue;
+                }
+                String[] parts = line.split(",");
+                try
+                {
+                    if (parts[0].equals("STUDENT"))
+                    {
+                        int newId = Integer.parseInt(parts[1]);
+                        String newName = parts[2];
+                        manager.addStudent(new GradebookStudent(newId, newName));
+                        studentsLoaded++;
+                    }
+                    else if (parts[0].equals("GRADE"))
+                    {
+                        int gradeId = Integer.parseInt(parts[1]);
+                        String gradeTitle = parts[2];
+                        double gradeScore = Double.parseDouble(parts[3]);
+                        manager.addGradeToStudent(gradeId, gradeTitle, gradeScore);
+                        gradesLoaded++;
+                    }
+                }
+                catch (Exception badLine)
+                {
+                    System.out.println("Skipping bad line: " + line);
+                }
+            }
+                fileScanner.close();
+                System.out.println("Data loaded successfully.");
+                System.out.println("Students loaded: " + studentsLoaded);
+                System.out.println("Grades loaded: " + gradesLoaded);
+            }
+            catch (FileNotFoundException notFound)
+            {
+                System.out.println("Could not find file: " + path);
+                System.out.println("Gradebook was not changed.");
+            }
+            break; 
 
             }
         }
