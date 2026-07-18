@@ -18,8 +18,20 @@ public class GradebookApp
             System.out.println("6. Load Data from File");
             System.out.println("7. Save Data to File");
             System.out.println("8. Exit");
-            System.out.print("Enter choice: _");
-            int choice = input.nextInt();
+            System.out.print("Enter choice: ");
+            int choice;
+            try
+            {
+                choice = input.nextInt();
+                input.nextLine();
+            }
+            catch(IllegalArgumentException e)
+            {
+                System.out.println("Invalid input. Please enter a number from 1 to 8.");
+                input.nextLine();
+                continue;
+            }
+            
 
             switch (choice)
             {
@@ -81,6 +93,7 @@ public class GradebookApp
                     {
                         System.out.println("No student found with that id");
                     }
+                    break;
                 case 5:
                     System.out.println("Enter an id");
                     id = input.nextInt();

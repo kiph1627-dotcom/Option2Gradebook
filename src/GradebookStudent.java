@@ -8,6 +8,7 @@ public class GradebookStudent
     private int id;
     private String name;
     private ArrayList<GradeItem> grades;
+    
     public GradebookStudent(int id, String name) {
         if (id <= 0) {
             throw new IllegalArgumentException("Student id must be > 0.");
@@ -45,7 +46,7 @@ public class GradebookStudent
     }
    public ArrayList<GradeItem> getGrades() 
     { 
-    return new ArrayList<GradeItem>(grades); 
+        return new ArrayList<GradeItem>(grades); 
     }
 
     public double averageGrade()
@@ -61,7 +62,8 @@ public class GradebookStudent
         }
         return total/grades.size();
     }
-      @Override
+      
+    @Override
     public String toString() {
         String avgText;
         if (grades.isEmpty()) {
