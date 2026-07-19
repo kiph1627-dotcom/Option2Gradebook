@@ -40,50 +40,78 @@ public class GradebookApp
             switch (choice)
             {
                 case 1:
-                    System.out.println("Enter an id");
-                    int id = input.nextInt();
-                    input.nextLine();
-                    System.out.println("Enter a name");
-                    String name = input.nextLine();
-                    GradebookStudent s1 = new GradebookStudent(id, name);
-                    boolean added = manager.addStudent(s1);
+                    try
+                    {                    
+                        System.out.println("Enter an id");
+                        int id = input.nextInt();
+                        input.nextLine();
+                        System.out.println("Enter a name");
+                        String name = input.nextLine();
+                        GradebookStudent s1 = new GradebookStudent(id, name);
 
-                    if (added)
-                    {
-                        System.out.println("The student was added succesfully!");
+                        boolean added = manager.addStudent(s1);
+
+                        if (added)
+                        {
+                            System.out.println("The student was added succesfully!");
+                        }
+                        else
+                        {
+                            System.out.println("Someone with that id already exists");
+                        }
+                        
+
                     }
-                    else
+                    catch (Exception e)
                     {
-                        System.out.println("Someone with that id already exists");
+                        System.out.println("Invalid input: " + e.getMessage());
                     }
                     break;
-
+                    
                 case 2:
-                    System.out.println("Enter an id");
-                    id = input.nextInt();
-                    input.nextLine();
-                    System.out.println("Enter a name");
-                    String title = input.nextLine();
-                    System.out.println("Enter the students score");
-                    double score = input.nextDouble();
-                    added = manager.addGradeToStudent(id, title, score);
-                    if (added)
-                    {
-                        System.out.println("Grade added to Student succesfully!");
+                    try
+                    { 
+                        System.out.println("Enter an id");
+                        int id = input.nextInt();
+                        input.nextLine();
+                        System.out.println("Enter a name");
+                        String title = input.nextLine();
+                        System.out.println("Enter the students score");
+                        double score = input.nextDouble();
+
+                        boolean added = manager.addGradeToStudent(id, title, score);
+                        if (added)
+                        {
+                            System.out.println("Grade added to Student succesfully!");
+                        }
+                        else
+                        {
+                            System.out.println("No Student matches that id");
+                        }
                     }
-                    else
+                    catch(Exception e)
                     {
-                        System.out.println("No Student matches that id");
+                        System.out.println("Invalid input: " + e.getMessage());
                     }
+     
                     break;
                 
                 case 3:
-                    System.out.println(manager.viewAllStudents());
-                    break;
+                   if (manager.viewAllStudents().isEmpty())
+                    {
+                        System.out.println("No students in the gradebook yet.");
+                        break;
+                    }
+                    for (GradebookStudent s : manager.viewAllStudents())
+                    {
+                        System.out.println(s.getID() + " - " + s.getName() + " - Average: " + String.format("%.1f", s.averageGrade()));
+                        break;
+                    }
+                    
 
                 case 4:
                     System.out.println("Enter an id");
-                    id = input.nextInt();
+                    int id = input.nextInt();
                     GradebookStudent s = manager.findById(id);
                     if (s != null)
                     {
