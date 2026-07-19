@@ -3,6 +3,7 @@ package src;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 public class GradebookApp 
 {
     public static void main(String[] args)
@@ -187,7 +188,26 @@ public class GradebookApp
                 System.out.println("Could not find file: " + path);
                 System.out.println("Gradebook was not changed.");
             }
-            break; 
+            break;
+            
+            case 7:
+                try (PrintWriter out = new PrintWriter("data/sample_data.txt")) 
+                {
+
+                for (GradebookStudent s1 : manager.viewAllStudents()) 
+                {
+                    out.println("STUDENT," + s1.getID() + "," + s1.getName());
+                    for (GradeItem g : s1.getGrades()) 
+                    {
+                        out.println("GRADE," + s1.getID() + "," + g.getTitle() + "," + g.getScore());
+                    }
+                }
+
+                } catch (FileNotFoundException e) 
+                {
+                    System.out.println("File not found");
+                }
+                break;
 
             case 8:
                 System.out.println("Goodbye!");
