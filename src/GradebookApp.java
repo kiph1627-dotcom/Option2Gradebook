@@ -32,11 +32,6 @@ public class GradebookApp
                 choice = input.nextInt();
                 input.nextLine();
             }
-            catch(InputMismatchException badInput)
-            {
-                System.out.println("Invalid input");
-                input.nextLine();
-            }
             catch(Exception e)
             {
                 System.out.println("Invalid input. Please enter a number from 1 to 8.");
@@ -77,6 +72,12 @@ public class GradebookApp
                     break;
                     
                 case 2:
+                    if (manager.viewAllStudents().isEmpty())
+                    {
+                        System.out.println("No students in the gradebook yet.");
+                        break;
+                    }
+                
                     try
                     { 
                         System.out.println("Enter an id");
@@ -119,8 +120,24 @@ public class GradebookApp
                     
 
                 case 4:
-                    System.out.println("Enter an id");
-                    int id = input.nextInt();
+                    if (manager.viewAllStudents().isEmpty())
+                    {
+                        System.out.println("No students in the gradebook yet.");
+                        break;
+                    }
+                    int id;
+                    try
+                    {
+                        System.out.println("Enter an id");
+                        id = input.nextInt();
+                        input.nextLine();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("Invalid input: " + e.getMessage());
+                        input.nextLine();
+                        continue;
+                    }
                     GradebookStudent s = manager.findById(id);
                     if (s != null)
                     {
@@ -136,8 +153,24 @@ public class GradebookApp
                     }
                     break;
                 case 5:
-                    System.out.println("Enter an id");
-                    id = input.nextInt();
+                    if (manager.viewAllStudents().isEmpty())
+                    {
+                        System.out.println("No students in the gradebook yet.");
+                        break;
+                    }
+                
+                    try
+                    {
+                        System.out.println("Enter an id");
+                        id = input.nextInt();
+                        input.nextLine();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("Invalid input: " + e.getMessage());
+                        input.nextLine();
+                        continue;
+                    }
                     GradebookStudent s3 = manager.findById(id);
                     if (s3 == null)
                     {
