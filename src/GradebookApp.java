@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.IOException;
+import java.util.InputMismatchException;
 public class GradebookApp 
 {
     public static void main(String[] args)
@@ -32,7 +32,12 @@ public class GradebookApp
                 choice = input.nextInt();
                 input.nextLine();
             }
-            catch(IllegalArgumentException e)
+            catch(InputMismatchException badInput)
+            {
+                System.out.println("Invalid input");
+                input.nextLine();
+            }
+            catch(Exception e)
             {
                 System.out.println("Invalid input. Please enter a number from 1 to 8.");
                 input.nextLine();
@@ -108,8 +113,9 @@ public class GradebookApp
                     for (GradebookStudent s : manager.viewAllStudents())
                     {
                         System.out.println(s.getID() + " - " + s.getName() + " - Average: " + String.format("%.1f", s.averageGrade()));
-                        break;
+                       
                     }
+                     break;
                     
 
                 case 4:
@@ -141,6 +147,7 @@ public class GradebookApp
                     {
                         System.out.println(s3);
                     }
+                    break;
                 case 6:
                     
         String path = "data/sample_data.txt";
@@ -220,6 +227,7 @@ public class GradebookApp
             case 8:
                 System.out.println("Goodbye!");
                 running = false;
+                break;
 
             }
                 
