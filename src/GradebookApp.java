@@ -3,7 +3,9 @@ package src;
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.IOException;
 public class GradebookApp 
 {
     public static void main(String[] args)
@@ -191,6 +193,11 @@ public class GradebookApp
             break;
             
             case 7:
+                  if (manager.viewAllStudents().isEmpty())
+                    {
+                        System.out.println("No gradebook data to save yet.");
+                        break;
+                    }
                 try (PrintWriter out = new PrintWriter("data/sample_data.txt")) 
                 {
 
@@ -202,11 +209,12 @@ public class GradebookApp
                         out.println("GRADE," + s1.getID() + "," + g.getTitle() + "," + g.getScore());
                     }
                 }
-
-                } catch (FileNotFoundException e) 
+                System.out.println("Gradebook saved succesfully!");
+                } catch (IOException e) 
                 {
-                    System.out.println("File not found");
+                    System.out.println("Could not save file " + e.getMessage());
                 }
+                
                 break;
 
             case 8:
