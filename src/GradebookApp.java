@@ -254,7 +254,6 @@ public class GradebookApp
                 {
                     System.out.println("Could not save file " + e.getMessage());
                 }
-                
                 break;
 
             case 8:

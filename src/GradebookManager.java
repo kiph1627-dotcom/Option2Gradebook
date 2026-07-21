@@ -6,12 +6,12 @@ public class GradebookManager
 
     public GradebookManager()
     {
-        this.students = new ArrayList<>();
+        this.students = new ArrayList<>(); //makes it an empty array
     }
 
     public boolean addStudent(GradebookStudent student)
     {
-        for (GradebookStudent s : students)
+        for (GradebookStudent s : students) //loops thtough all the students in the list
         {
             if (s.getID() == student.getID())
             {
@@ -28,7 +28,7 @@ public class GradebookManager
         {
             if (s1.getID() == id)
             {
-                s1.addGrade(new GradeItem(title, score));
+                s1.addGrade(new GradeItem(title, score)); // goes to the add grade method in gradebook student
                 return true;
             }
         }
@@ -36,7 +36,7 @@ public class GradebookManager
     }
     public GradebookStudent findById(int id)
     {
-        for (GradebookStudent s2 : students)
+        for (GradebookStudent s2 : students) //loops through all of the students
         {
             if (s2.getID() == id)
             {
@@ -48,7 +48,7 @@ public class GradebookManager
 
     public ArrayList<GradebookStudent> viewAllStudents()
     {
-        return new ArrayList<GradebookStudent>(students);
+        return new ArrayList<GradebookStudent>(students); //returns a copy of the list of students
     }
 
 }
